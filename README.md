@@ -13,7 +13,7 @@ This colorscheme is based on the awesome [rosepine](https://github.com/rose-pine
 ```lua
 require('lazy').setup({
   {
-    'liminalminds/icecream-neovim',
+    'icecreamtheme/neovim',
     name = 'icecream',
     lazy = false,
     priority = 1000,
