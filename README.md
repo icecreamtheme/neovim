@@ -1,4 +1,4 @@
-# icecream for [Neovim](https://github.com/neovim/neovim)
+# Icecream for [Neovim](https://github.com/neovim/neovim)
 
 ![Screenshot](screenshot.png)
 
