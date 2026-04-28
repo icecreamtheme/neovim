@@ -1,4 +1,4 @@
-# Icecream for [Neovim](https://github.com/neovim/neovim)
+# icecream for [Neovim](https://github.com/neovim/neovim)
 
 ![Screenshot](screenshot.png)
 
@@ -25,7 +25,7 @@ require('lazy').setup({
 
 ```lua
 require('packer').startup(function(use)
-  use({ 'liminalminds/icecream-neovim', as = 'icecream' })
+  use({ 'icecreamtheme/neovim', as = 'icecream' })
 end)
 ```
 

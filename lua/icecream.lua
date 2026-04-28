@@ -1,67 +1,61 @@
+---@alias Color { fg: string, bg: string, sp: string, bold: boolean, italic: boolean, undercurl: boolean, underline: boolean, underdouble: boolean, underdotted: boolean, underdashed: boolean, strikethrough: boolean }
+
 local M = {}
 
--- ---@alias Color { fg: string, bg: string, sp: string, bold: boolean, italic: boolean, undercurl: boolean, underline: boolean, underdouble: boolean, underdotted: boolean, underdashed: boolean, strikethrough: boolean }
 
--- ---@class Options
--- local options = {
--- 	bold_vert_split = false,
--- 	dim_nc_background = false,
--- 	disable_background = false,
--- 	disable_float_background = false,
-
-
----@type table<string, string>
+---@type table<string, Color>
 local p = require('palette')
 
 local groups = {
+	boolean = p.apple,
+	string = p.greenapple,
 	background = p.chocolate,
 	background_nc = p.chocolate,
 	panel = p.blackberry,
 	panel_nc = p.chocolate,
-	border = p.strawberry,
-	comment = p.currant,
+	border = p.bluemoon,
+	comment = p.blackberry,
 	link = p.bluemoon,
-	punctuation = p.rose,
-	error = p.apple,
-	hint = p.mango,
-	info = p.pistachio,
+	punctuation = p.currant,
+	error = p.rose,
 	warn = p.kesar,
-	git_add = p.pistachio,
-	git_change = p.orange,
-	git_delete = p.strawberry,
+	hint = p.currant,
+	info = p.pistachio,
+	git_add = p.greenapple,
+	git_change = p.apple,
+	git_delete = p.rose,
 	git_dirty = p.rose,
-	git_ignore = p.currant,
+	git_ignore = p.lichi,
 	git_merge = p.vanilla,
 	git_rename = p.rose,
 	git_stage = p.greenapple,
 	git_text = p.fig,
 	headings = {
 		h1 = p.vanilla,
-		h2 = p.pistachio,
+		h2 = p.greenapple,
 		h3 = p.rose,
 		h4 = p.mango,
 		h5 = p.bluemoon,
-		h6 = p.orange,
+		h6 = p.apple,
 	},
 }
 
 function M.setup()
-
 	-- terminal colors
 	vim.g.terminal_color_0 = p.chocolate
 	vim.g.terminal_color_8 = p.vanilla
-	vim.g.terminal_color_1 = p.strawberry
+	vim.g.terminal_color_1 = p.rose
 	vim.g.terminal_color_9 = p.rose
-	vim.g.terminal_color_2 = p.pistachio
+	vim.g.terminal_color_2 = p.greenapple
 	vim.g.terminal_color_10 = p.greenapple
 	vim.g.terminal_color_3 = p.mango
-	vim.g.terminal_color_11 = p.kesar
-	vim.g.terminal_color_4 = p.blueberry
+	vim.g.terminal_color_11 = p.mango
+	vim.g.terminal_color_4 = p.bluemoon
 	vim.g.terminal_color_12 = p.bluemoon
 	vim.g.terminal_color_5 = p.lichi
-	vim.g.terminal_color_13 = p.currant
+	vim.g.terminal_color_13 = p.lichi
 	vim.g.terminal_color_6 = p.apple
-	vim.g.terminal_color_14 = p.orange
+	vim.g.terminal_color_14 = p.apple
 	vim.g.terminal_color_7 = p.blackberry
 	vim.g.terminal_color_15 = p.fig
 
@@ -73,31 +67,15 @@ function M.setup()
 	end
 	vim.g.colors_name = 'icecream'
 
-	-- local groups = options.groups or {}
-	-- local = {
-	-- 	chocolate = (options.disable_background and p.none) or groups.background,
-	-- 	blackberry = (options.disable_float_background and p.none) or groups.panel,
-	-- 	italic = not options.disable_italics,
-	-- }
-	-- bold_vert_split = (options.bold_vert_split and groups.border)
-	-- 	or p.none
-	-- dim_nc_background = (
-	-- 	options.dim_nc_background and groups.background_nc
-	-- ) or chocolate
-
-	-- local float_background = options.dim_nc_background
-	-- 		and (options.disable_float_background and groups.panel_nc or groups.panel)
-	-- 	or blackberry
-
 	M.defaults = {
 		['ColorColumn'] = { bg = p.bluemoon },
 		['Conceal'] = { bg = p.none },
 		['CurSearch'] = { link = 'DiffAdd' },
 		['Cursor'] = { fg = p.vanilla, bg = p.vanilla },
 		['CursorColumn'] = { bg = p.rose },
-	-- ['CursorIM'] = {},
-		['CursorLine'] = { bg = p.rose },
-		['CursorLineNr'] = { fg = p.vanilla },
+		-- ['CursorIM'] = {},
+		['CursorLine'] = { bg = p.greenapple, fg = p.chocolate },
+		['CursorLineNr'] = { fg = p.fig },
 		['DarkenedPanel'] = { bg = p.blackberry },
 		['DarkenedStatusline'] = { bg = p.blackberry },
 		['DiffAdd'] = { bg = groups.git_add, blend = 20 },
@@ -108,41 +86,41 @@ function M.setup()
 		['diffAdded'] = { link = 'DiffAdd' },
 		['diffChanged'] = { link = 'DiffChange' },
 		['diffRemoved'] = { link = 'DiffDelete' },
-		['Directory'] = { fg = p.pistachio, bg = p.none },
+		['Directory'] = { fg = p.greenapple, bg = p.none },
 		['EndOfBuffer'] = { bg = p.none },
-		['ErrorMsg'] = { fg = p.strawberry, bold = true },
+		['ErrorMsg'] = { fg = p.rose, bold = true },
 		['FloatBorder'] = { fg = groups.border, bg = p.chocolate },
-		['FloatTitle'] = { fg = p.blackberry},
-		['FoldColumn'] = { fg = p.blackberry},
+		['FloatTitle'] = { fg = p.blackberry },
+		['FoldColumn'] = { fg = p.blackberry },
 		['Folded'] = { fg = p.vanilla, bg = p.blackberry },
 		['IncSearch'] = { fg = groups.background, bg = p.rose },
-		['LineNr'] = { fg = p.fig},
+		['LineNr'] = { fg = p.fig },
 		['MatchParen'] = { fg = p.vanilla, bg = p.highlight_med },
 		['ModeMsg'] = { fg = p.subtle },
 		['MoreMsg'] = { fg = p.vanilla },
-		['NonText'] = { fg = p.vanilla},
-		['Normal'] = { fg = p.vanilla, bg = p.none },
+		['NonText'] = { fg = p.vanilla },
+		['Normal'] = { fg = p.vanilla, bg = p.chocolate },
 		['NormalFloat'] = { fg = p.vanilla, bg = p.none },
 		['NormalNC'] = { fg = p.vanilla, bg = p.none },
-		['NvimInternalError'] = { fg = '#ffffff', bg = p.strawberry },
-		['Pmenu'] = { fg = p.subtle, bg = p.blackberry },
+		['NvimInternalError'] = { fg = '#ffffff', bg = p.rose },
+		['Pmenu'] = { fg = p.apple, bg = '#000000' },
 		['PmenuSbar'] = { bg = p.highlight_low },
 		['PmenuSel'] = { fg = p.vanilla, bg = p.bluemoon },
 		['PmenuThumb'] = { bg = p.highlight_med },
 		['Question'] = { fg = p.mango },
 		['RedrawDebugClear'] = { fg = '#ffffff', bg = p.mango },
 		['RedrawDebugComposed'] = { fg = '#ffffff', bg = p.bluemoon },
-		['RedrawDebugRecompose'] = { fg = '#ffffff', bg = p.strawberry },
+		['RedrawDebugRecompose'] = { fg = '#ffffff', bg = p.rose },
 		['Search'] = { bg = p.highlight_med },
-		['SpecialKey'] = { fg = p.pistachio },
+		['SpecialKey'] = { fg = p.greenapple },
 		['SpellBad'] = { sp = p.subtle, undercurl = true },
 		['SpellCap'] = { sp = p.subtle, undercurl = true },
 		['SpellLocal'] = { sp = p.subtle, undercurl = true },
 		['SpellRare'] = { sp = p.subtle, undercurl = true },
-		['SignColumn'] = { fg = p.vanilla, bg = p.blackberry },
-		['Substitute'] = { fg = p.chocolate, bg = p.strawberry },
+		['SignColumn'] = { fg = p.rose, bg = p.none, bold = true },
+		['Substitute'] = { fg = p.chocolate, bg = p.rose },
 		['StatusLine'] = { fg = p.subtle, bg = groups.panel },
-		['StatusLineNC'] = { fg = p.currant, bg = groups.panel_nc },
+		['StatusLineNC'] = { fg = p.lichi, bg = groups.panel_nc },
 		['StatusLineTerm'] = { link = 'StatusLine' },
 		['StatusLineTermNC'] = { link = 'StatusLineNC' },
 		['TabLine'] = { fg = p.subtle, bg = groups.panel },
@@ -156,7 +134,7 @@ function M.setup()
 		-- Whitespace = {},
 		['WildMenu'] = { link = 'IncSearch' },
 
-		['Boolean'] = { fg = p.rose },
+		['Boolean'] = { fg = p.apple, bold = true },
 		['Character'] = { fg = p.mango },
 		['Comment'] = { fg = groups.comment, italic = true },
 		['Conditional'] = { fg = p.bluemoon },
@@ -164,15 +142,16 @@ function M.setup()
 		['Debug'] = { fg = p.rose },
 		['Define'] = { fg = p.vanilla },
 		['Delimiter'] = { fg = p.subtle },
-		['Error'] = { fg = p.strawberry },
+		['Error'] = { fg = p.rose },
 		['Exception'] = { fg = p.bluemoon },
 		['Float'] = { fg = p.mango },
-		['Function'] = { fg = p.lichi },
+		-- ['Function'] = { fg = p.lichi },
+		['Function'] = { fg = p.mango, bold = true },
 		['Identifier'] = { fg = p.rose },
 		-- Ignore = {},
 		['Include'] = { fg = p.bluemoon },
-		['Keyword'] = { fg = p.bluemoon },
-		['Label'] = { fg = p.pistachio },
+		['Keyword'] = { fg = p.pistachio },
+		['Label'] = { fg = p.greenapple },
 		['Macro'] = { fg = p.rose },
 		['Number'] = { fg = p.mango },
 		['Operator'] = { fg = p.subtle },
@@ -183,12 +162,12 @@ function M.setup()
 		['SpecialChar'] = { fg = p.rose },
 		['SpecialComment'] = { fg = p.vanilla },
 		['Statement'] = { fg = p.bluemoon },
-		['StorageClass'] = { fg = p.pistachio },
-		['String'] = { fg = p.mango },
-		['Structure'] = { fg = p.pistachio },
-		['Tag'] = { fg = p.pistachio },
+		['StorageClass'] = { fg = p.greenapple },
+		['String'] = { fg = p.bluemoon },
+		['Structure'] = { fg = p.greenapple },
+		['Tag'] = { fg = p.greenapple },
 		['Todo'] = { fg = p.vanilla },
-		['Type'] = { fg = p.pistachio },
+		['Type'] = { fg = p.apple },
 		['Typedef'] = { link = 'Type' },
 		['Underlined'] = { underline = true },
 
@@ -204,7 +183,7 @@ function M.setup()
 		['htmlLink'] = { fg = groups.link },
 		['htmlTag'] = { fg = p.subtle },
 		['htmlTagN'] = { fg = p.vanilla },
-		['htmlTagName'] = { fg = p.pistachio },
+		['htmlTagName'] = { fg = p.greenapple },
 
 		['markdownDelimiter'] = { fg = p.subtle },
 		['markdownH1'] = { fg = groups.headings.h1, bold = true },
@@ -222,12 +201,12 @@ function M.setup()
 		['markdownLinkText'] = { fg = groups.link, sp = groups.link, underline = true },
 		['markdownUrl'] = { link = 'markdownLinkText' },
 
-		['mkdCode'] = { fg = p.pistachio, italic = groups.italic },
+		['mkdCode'] = { fg = p.greenapple, italic = groups.italic },
 		['mkdCodeDelimiter'] = { fg = p.rose },
-		['mkdCodeEnd'] = { fg = p.pistachio },
-		['mkdCodeStart'] = { fg = p.pistachio },
-		['mkdFootnotes'] = { fg = p.pistachio },
-		['mkdID'] = { fg = p.pistachio, underline = true },
+		['mkdCodeEnd'] = { fg = p.greenapple },
+		['mkdCodeStart'] = { fg = p.greenapple },
+		['mkdFootnotes'] = { fg = p.greenapple },
+		['mkdID'] = { fg = p.greenapple, underline = true },
 		['mkdInlineURL'] = { fg = groups.link, underline = true },
 		['mkdLink'] = { link = 'mkdInlineURL' },
 		['mkdLinkDef'] = { link = 'mkdInlineURL' },
@@ -256,10 +235,10 @@ function M.setup()
 		['DiagnosticStatusLineHint'] = { fg = groups.hint, bg = groups.panel },
 		['DiagnosticStatusLineInfo'] = { fg = groups.info, bg = groups.panel },
 		['DiagnosticStatusLineWarn'] = { fg = groups.warn, bg = groups.panel },
-		['DiagnosticUnderlineError'] = { sp = groups.error, undercurl = true },
-		['DiagnosticUnderlineHint'] = { sp = groups.hint, undercurl = true },
-		['DiagnosticUnderlineInfo'] = { sp = groups.info, undercurl = true },
-		['DiagnosticUnderlineWarn'] = { sp = groups.warn, undercurl = true },
+		['DiagnosticUnderlineError'] = { sp = groups.error, underdotted = true },
+		['DiagnosticUnderlineHint'] = { sp = groups.hint, underdotted = true },
+		['DiagnosticUnderlineInfo'] = { sp = groups.info, underdotted = true },
+		['DiagnosticUnderlineWarn'] = { sp = groups.warn, underdotted = true },
 		['DiagnosticVirtualTextError'] = { fg = groups.error },
 		['DiagnosticVirtualTextHint'] = { fg = groups.hint },
 		['DiagnosticVirtualTextInfo'] = { fg = groups.info },
@@ -274,19 +253,19 @@ function M.setup()
 		['@boolean'] = { link = 'Boolean' },
 		['@character'] = { link = 'Character' },
 		['@character.special'] = { link = '@character' },
-		['@class'] = { fg = p.pistachio },
+		['@class'] = { fg = p.greenapple },
 		['@comment'] = { link = 'Comment' },
 		['@conditional'] = { link = 'Conditional' },
 		['@constant'] = { link = 'Constant' },
-		['@constant.builtin'] = { fg = p.strawberry },
+		['@constant.builtin'] = { fg = p.rose },
 		['@constant.macro'] = { link = '@constant' },
-		['@constructor'] = { fg = p.pistachio },
-		['@field'] = { fg = p.orange },
+		['@constructor'] = { fg = p.greenapple },
+		['@field'] = { fg = p.lichi },
 		['@function'] = { link = 'Function' },
-		['@function.builtin'] = { fg = p.strawberry },
+		['@function.builtin'] = { fg = p.bluemoon },
 		['@function.macro'] = { link = '@function' },
 		['@include'] = { link = 'Include' },
-		['@interface'] = { fg = p.pistachio },
+		['@interface'] = { fg = p.greenapple },
 		['@keyword'] = { link = 'Keyword' },
 		['@keyword.operator'] = { fg = p.subtle },
 		['@label'] = { link = 'Label' },
@@ -296,7 +275,7 @@ function M.setup()
 		['@operator'] = { link = 'Operator' },
 		['@parameter'] = { fg = p.vanilla, italic = groups.italic },
 		['@preproc'] = { link = 'PreProc' },
-		['@property'] = { fg = p.greenapple, italic = groups.italic },
+		['@property'] = { fg = p.mango, italic = groups.italic },
 		['@punctuation'] = { fg = groups.punctuation },
 		['@punctuation.bracket'] = { link = '@punctuation' },
 		['@punctuation.delimiter'] = { link = '@punctuation' },
@@ -327,7 +306,7 @@ function M.setup()
 		['@todo'] = { link = 'Todo' },
 		['@type'] = { link = 'Type' },
 		['@variable'] = { fg = p.vanilla, italic = groups.italic },
-		['@variable.builtin'] = { fg = p.strawberry },
+		['@variable.builtin'] = { fg = p.rose },
 		['@namespace'] = { link = '@include' },
 
 		-- LSP Semantic Token Groups
@@ -367,32 +346,32 @@ function M.setup()
 		['LspReferenceWrite'] = { bg = p.highlight_med },
 
 		-- lsp-highlight-codelens
-		['LspCodeLens'] = { fg = p.subtle }, -- virtual text of code len
+		['LspCodeLens'] = { fg = p.subtle },            -- virtual text of code len
 		['LspCodeLensSeparator'] = { fg = p.highlight_high }, -- separator between two or more code len
 
 		-- folke/which-key.nvim
 		['WhichKey'] = { fg = p.vanilla },
-		['WhichKeyGroup'] = { fg = p.pistachio },
+		['WhichKeyGroup'] = { fg = p.greenapple },
 		['WhichKeySeparator'] = { fg = p.subtle },
 		['WhichKeyDesc'] = { fg = p.mango },
 		['WhichKeyFloat'] = { bg = p.blackberry },
 		['WhichKeyValue'] = { fg = p.rose },
 
 		-- luka-reineke/indent-blankline.nvim
-		['IndentBlanklineChar'] = { fg = p.currant, nocombine = true },
-		['IndentBlanklineSpaceChar'] = { fg = p.currant, nocombine = true },
-		['IndentBlanklineSpaceCharBlankline'] = { fg = p.currant, nocombine = true },
+		['IndentBlanklineChar'] = { fg = p.lichi, nocombine = true },
+		['IndentBlanklineSpaceChar'] = { fg = p.lichi, nocombine = true },
+		['IndentBlanklineSpaceCharBlankline'] = { fg = p.lichi, nocombine = true },
 
 		-- hrsh7th/nvim-cmp
-		['CmpItemAbbr'] = { fg = p.subtle },
-		['CmpItemAbbrDeprecated'] = { fg = p.subtle, strikethrough = true },
+		['CmpItemAbbr'] = { fg = p.fig },
+		['CmpItemAbbrDeprecated'] = { fg = p.rose, strikethrough = true },
 		['CmpItemAbbrMatch'] = { fg = p.vanilla, bold = true },
 		['CmpItemAbbrMatchFuzzy'] = { fg = p.vanilla, bold = true },
-		['CmpItemKind'] = { fg = p.subtle },
+		['CmpItemKind'] = { fg = p.greenapple },
 		['CmpItemKindClass'] = { fg = p.bluemoon },
 		['CmpItemKindFunction'] = { fg = p.rose },
-		['CmpItemKindInterface'] = { fg = p.pistachio },
-		['CmpItemKindMethod'] = { fg = p.vanilla },
+		['CmpItemKindInterface'] = { fg = p.bluemoon },
+		['CmpItemKindMethod'] = { fg = p.lichi },
 		['CmpItemKindSnippet'] = { fg = p.mango },
 		['CmpItemKindVariable'] = { fg = p.vanilla },
 
@@ -407,38 +386,25 @@ function M.setup()
 		['TelescopeTitle'] = { fg = p.subtle },
 
 		-- rcarriga/nvim-notify
-		['NotifyINFOBorder'] = { fg = p.pistachio },
+		['NotifyINFOBorder'] = { fg = p.greenapple },
 		['NotifyINFOTitle'] = { link = 'NotifyINFOBorder' },
 		['NotifyINFOIcon'] = { link = 'NotifyINFOBorder' },
 		['NotifyWARNBorder'] = { fg = p.mango },
 		['NotifyWARNTitle'] = { link = 'NotifyWARNBorder' },
 		['NotifyWARNIcon'] = { link = 'NotifyWARNBorder' },
-		['NotifyDEBUGBorder'] = { fg = p.blackberry},
+		['NotifyDEBUGBorder'] = { fg = p.blackberry },
 		['NotifyDEBUGTitle'] = { link = 'NotifyDEBUGBorder' },
 		['NotifyDEBUGIcon'] = { link = 'NotifyDEBUGBorder' },
 		['NotifyTRACEBorder'] = { fg = p.vanilla },
 		['NotifyTRACETitle'] = { link = 'NotifyTRACEBorder' },
 		['NotifyTRACEIcon'] = { link = 'NotifyTRACEBorder' },
-		['NotifyERRORBorder'] = { fg = p.strawberry },
+		['NotifyERRORBorder'] = { fg = p.rose },
 		['NotifyERRORTitle'] = { link = 'NotifyERRORBorder' },
 		['NotifyERRORIcon'] = { link = 'NotifyERRORBorder' },
 
 		-- nvim-tree/nvim-tree
-		['NvimTreeCursorLine'] = { bg = p.bluemoon, fg = p.vanilla },
+		['NvimTreeCursorLine'] = { bg = p.fig, fg = p.chocolate },
 	}
-
-	-- -- Set users highlight_group customisations.
-	-- for group, opts in pairs(options.highlight_groups) do
-	-- 	local default_opts = M.defaults[group]
-
-	-- 	if (opts.inherit == nil or opts.inherit) and default_opts ~= nil then -- On merge.
-	-- 		opts.inherit = nil -- Don't add this key to the highlight_group after merge.
-	-- 		M.defaults[group] = vim.tbl_extend('force', default_opts, opts)
-	-- 	else -- On overwrite.
-	-- 		opts.inherit = nil -- Don't add this key to the highlight_group.
-	-- 		M.defaults[group] = opts
-	-- 	end
-	-- end
 
 	-- Set highlights.
 	for group, color in pairs(M.defaults) do
